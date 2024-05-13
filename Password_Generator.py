@@ -45,21 +45,21 @@ if __name__ == '__main__':
 
 
 
-# Method-2 : More of a basic approach
-# Learn about random here
+# # Method-2 : More of a basic approach
+# # Learn about random here
 
-import random
-print('Welocme : How may the Password Generator Help You')
+# import random
+# print('Welocme : How may the Password Generator Help You')
 
-# Contains symbols, 0-9, a-z, A-Z
-chars = "ibsdcihscbhakus9883eewu920ej\[s[SX;Lahx-9q-9d08qe98d180-1d,m lamkaj ubq-0\]"
+# # Contains symbols, 0-9, a-z, A-Z
+# chars = "ibsdcihscbhakus9883eewu920ej\[s[SX;Lahx-9q-9d08qe98d180-1d,m lamkaj ubq-0\]"
 
-num = input("ENTER LENGTH OF YOUR PASSWORD: ")
+# num = input("ENTER LENGTH OF YOUR PASSWORD: ")
 
-password =''
-for i in range(int(num)):
-    password += random.choice(chars)
+# password =''
+# for i in range(int(num)):
+#     password += random.choice(chars)
 
-print('\n here is your password: ' + password)
+# print('\n here is your password: ' + password)
 
 
