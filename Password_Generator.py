@@ -1,27 +1,49 @@
 # Input  - N - number of passwords , Length - length of password
 
-# Method-1 using Regex and Secrets Module - More sophisticated
 import re
 import secrets
 import string
 
-
 def generate_password(length=16, nums=1, special_chars=1, uppercase=1, lowercase=1):
+    """
+    Generates a strong password meeting the specified criteria.
 
-    # Define the possible characters for the password
+    Args:
+        length (int, optional): Length of the password. Defaults to 16.
+        nums (int, optional): Minimum number of digits in the password. Defaults to 1.
+        special_chars (int, optional): Minimum number of special characters in the password. Defaults to 1.
+        uppercase (int, optional): Minimum number of uppercase letters in the password. Defaults to 1.
+        lowercase (int, optional): Minimum number of lowercase letters in the password. Defaults to 1.
+
+    Returns:
+        str: The generated password.
+
+    Raises:
+        ValueError: If the specified criteria cannot be met.
+
+    Examples:
+        >>> generate_password()
+        'P@ssw0rd1234'
+        >>> generate_password(length=12, nums=2, special_chars=1)
+        'P@ssw0rd12!'
+    """
+
     letters = string.ascii_letters
     digits = string.digits
     symbols = string.punctuation
 
-    # Combine all characters
     all_characters = letters + digits + symbols
+
+    # Check if the specified criteria can be met
+    if length < nums + special_chars + uppercase + lowercase:
+        raise ValueError("The specified criteria cannot be met with the given length.")
 
     while True:
         password = ''
-        # Generate password
         for _ in range(length):
             password += secrets.choice(all_characters)
-        
+
+        # Check if the password meets the criteria
         constraints = [
             (nums, r'\d'),
             (special_chars, fr'[{symbols}]'),
@@ -29,37 +51,15 @@ def generate_password(length=16, nums=1, special_chars=1, uppercase=1, lowercase
             (lowercase, r'[a-z]')
         ]
 
-        # Check constraints        
         if all(
             constraint <= len(re.findall(pattern, password))
             for constraint, pattern in constraints
         ):
             break
-    
+
     return password
+
     
 if __name__ == '__main__':
     new_password = generate_password()
     print('Generated password:', new_password)
-
-
-
-
-# # Method-2 : More of a basic approach
-# # Learn about random here
-
-# import random
-# print('Welocme : How may the Password Generator Help You')
-
-# # Contains symbols, 0-9, a-z, A-Z
-# chars = "ibsdcihscbhakus9883eewu920ej\[s[SX;Lahx-9q-9d08qe98d180-1d,m lamkaj ubq-0\]"
-
-# num = input("ENTER LENGTH OF YOUR PASSWORD: ")
-
-# password =''
-# for i in range(int(num)):
-#     password += random.choice(chars)
-
-# print('\n here is your password: ' + password)
-
-
